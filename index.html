@@ -164,18 +164,30 @@
         <div class="title">⚡ JL-Files</div>
         <div class="subtitle">&amp; Fast Download Method</div>
         <div class="line-deco"></div>
-        <!-- الرابط الأول: # يتم استبداله بالرابط المختصر -->
-        <!-- الرابط الثاني: FALLBACK_URL (يتم فتحه إذا كان الرابط الأول #) -->
-        <a href="#" target="_blank" class="download-btn" id="downloadBtn">
+        
+        <!-- الرابط الأول: يتم استبداله بـ # أو الرابط المختصر -->
+        <a href="REPLACE_URL" target="_blank" class="download-btn" id="downloadBtn">
             <span class="icon">⬇</span> Download
         </a>
+        
         <div class="version">v2.0.1 • secure</div>
     </div>
     <script>
         document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // إذا كان الرابط #، افتح الرابط البديل
+            if (href === '#') {
+                e.preventDefault();
+                window.location.href = 'https://dev-jakel.github.io/No-Fils-Yet/';
+                return;
+            }
+            
+            // وإلا، افتح الرابط المختصر
             const originalText = this.innerHTML;
             this.innerHTML = '<span class="icon">⏳</span> Redirecting...';
             this.style.opacity = '0.7';
+            
             setTimeout(() => {
                 this.innerHTML = originalText;
                 this.style.opacity = '1';
